@@ -7,7 +7,7 @@ const db = require("./db/operations");
 const { insertData, deleteEmptyRows, deleteDuplicates } = require("./index");
 
 const app = express();
-const PORT = 2000;
+const PORT = process.env.PORT || 2000;
 const upload = multer({ dest: "./Data/" });
 
 app.use(cors());
