@@ -22,7 +22,8 @@ const db = new sqlite3.Database(
 //         position,
 //         salary,
 //         supervisor,
-//         employee_code PRIMARY KEY
+//         employee_code PRIMARY KEY,
+//         Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 //     )`;
 // db.run(sql);
 
