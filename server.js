@@ -4,7 +4,7 @@ const fs = require("fs");
 const cors = require("cors");
 const db = require("./db/operations");
 
-const { insertData, deleteEmptyRows } = require("./index");
+const { insertData, deleteEmptyRows, deleteDuplicates } = require("./index");
 
 const app = express();
 const PORT = 2000;
@@ -29,6 +29,7 @@ app.post("/upload", upload.single("file"), function (req, res, next) {
 
 app.get("/user-data", async (req, res) => {
   deleteEmptyRows();
+  deleteDuplicates();
   const result = await db.getAllEmployees();
   res.status(200).json({ result });
 });

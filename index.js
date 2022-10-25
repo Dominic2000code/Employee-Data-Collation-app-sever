@@ -23,14 +23,24 @@ const db = new sqlite3.Database(
 //         salary,
 //         supervisor,
 //         employee_code PRIMARY KEY,
-//         Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+//         Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+//         UNIQUE(
+//           first_name,
+//           middle_name,
+//           date_of_graduation,
+//           date_of_employment,
+//           position,
+//           salary,
+//           supervisor,
+//           employee_code,
+//           Timestamp) ON CONFLICT IGNORE
 //     )`;
 // db.run(sql);
 
 // insert data into database
 
 const insertData = () => {
-  sql = `INSERT INTO employees( first_name,
+  sql = `INSERT OR REPLACE INTO employees( first_name,
         middle_name,
         date_of_graduation,
         date_of_employment,
@@ -90,9 +100,37 @@ const insertData = () => {
 //   });
 // };
 
+// select duplicates
+// sql = `
+// SELECT * FROM employees
+// WHERE EXISTS (
+//   SELECT 1 FROM employees copy_employees
+//   WHERE employees.first_name = copy_employees.first_name
+//   AND employees.middle_name = copy_employees.middle_name
+//   AND employees.rowid > copy_employees.rowid
+// );
+// `;
+// db.all(sql, [], (err, rows) => {
+//   if (err) return console.log(err.message);
+//   console.log(rows);
+// });
+
+const deleteDuplicates = () => {
+  sql = `
+  DELETE FROM employees
+  WHERE EXISTS (
+    SELECT 1 FROM employees copy_employees 
+    WHERE employees.first_name = copy_employees.first_name
+    AND employees.middle_name = copy_employees.middle_name
+    AND employees.rowid > copy_employees.rowid
+  );
+  `;
+  db.run(sql);
+};
+
 const deleteEmptyRows = () => {
   sql = `DELETE FROM employees WHERE  first_name=""`;
   db.run(sql);
 };
 
-module.exports = { insertData, deleteEmptyRows };
+module.exports = { insertData, deleteEmptyRows, deleteDuplicates };

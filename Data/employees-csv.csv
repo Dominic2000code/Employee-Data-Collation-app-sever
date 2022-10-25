@@ -1,4 +1,4 @@
-﻿First_Name,Middle_Name,Date_of_Graduation,Date_of_Employment,Position,Salary,Supervisor(s),Employee_Code
-John,Ankrah,10/24/12,10/24/22,Sales,3200,Alex Mason,JA-458
-Babra,Bouadu,10/25/12,10/1/22,Marketing,3300,Alex Mason; Luke Mayfield,BB-908
-Georgette,Lin,10/26/12,10/2/22,Advertising,2000,Luke Mayfield,GL-578
+﻿First_Name,Middle_Name,Date_of_Graduation,Date_of_Employment,Position,Salary,Supervisor,Employee_Code
+Alice,Achampong,5/2/18,9/4/20,Sales,2000,Greg Dawson,AA-457
+Jeffery,Jake,5/3/18,9/5/20,Marketing,2500,Lance Richards,JJ-789
+Linda,Amenu,5/4/18,9/6/20,Advertising,3000,Luke Mayfield,LA-987
