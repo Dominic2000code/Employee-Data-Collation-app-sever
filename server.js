@@ -23,7 +23,7 @@ app.post("/upload", upload.single("file"), function (req, res, next) {
   fs.rename(`./Data/${req.file.filename}`, `./Data/${newFileName}`, () => {
     console.log("file saved");
     insertData();
-    res.send("200");
+    res.status(200).send("200");
   });
 });
 
